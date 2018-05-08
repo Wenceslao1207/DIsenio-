@@ -149,7 +149,7 @@ namespace Events.Controllers
             return query;
         }
 
-        [Route("api/Events/{date}-{date2}")]
+        [Route("api/Events/{date}/{date2}")]
         public IQueryable GetEventsBetweenDates(DateTime date, DateTime date2)
         {
             var query =
