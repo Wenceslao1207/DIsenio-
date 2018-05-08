@@ -82,31 +82,22 @@ namespace Events.Controllers
 
             EventWithTicket query =
                 (from data in db.EventsWithTickets
-                where (data.EventWithTicketID == ticket.EventWithTicketID)
-                select data).SingleOrDefault();
-            if (query.MaxTicket == 0)
+                 where (data.EventWithTicketID == ticket.EventWithTicketID)
+                 select data).SingleOrDefault();
+            if (query.MaxTicket > 0)
             {
-                return StatusCode(HttpStatusCode.NoContent);
-            } else
-            {
-               
                 try
                 {
                     db.Tickets.Add(ticket);
                     query.MaxTicket--;
                     db.SaveChanges();
-                    
+
                     return CreatedAtRoute("DefaultApi", new { id = ticket.TicketID }, ticket);
                 }
-                catch
-                {
-
-                    return StatusCode(HttpStatusCode.NoContent);
-                }
+                catch{}
             }
-
-           
-
+            else if (query.MaxTicket == 0) { query.HasTickets = false; db.SaveChanges(); }
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // DELETE: api/Tickets/5

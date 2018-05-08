@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -26,10 +26,8 @@
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Country", "Index", "Countries", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("City", "Index", "Cities", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Country", "Index", "Countries", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Transport", "Index", "Transports", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Events", "Index", "EventWithTickets", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Ticket", "Index", "Tickets", new { area = "" }, null)</li>
                 </ul>
             </div>
         </div>

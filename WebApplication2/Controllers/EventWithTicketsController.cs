@@ -54,11 +54,14 @@ namespace Events.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.EventsWithTickets.Add(eventWithTicket);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    if (eventWithTicket.EventDate >= DateTime.Now)
+                    {
+                        db.EventsWithTickets.Add(eventWithTicket);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                return View("Error ") ;
             }
-
             ViewBag.CityID = new SelectList(db.Cities, "CityID", "CityName", eventWithTicket.CityID);
             ViewBag.TransportID = new SelectList(db.Transports, "TransportID", "TransportType", eventWithTicket.TransportID);
             return View(eventWithTicket);
