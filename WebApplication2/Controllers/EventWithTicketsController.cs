@@ -60,7 +60,7 @@ namespace Events.Controllers
                         db.SaveChanges();
                         return RedirectToAction("Index");
                     }
-                return View("Error ") ;
+                return View("DateError") ;
             }
             ViewBag.CityID = new SelectList(db.Cities, "CityID", "CityName", eventWithTicket.CityID);
             ViewBag.TransportID = new SelectList(db.Transports, "TransportID", "TransportType", eventWithTicket.TransportID);
