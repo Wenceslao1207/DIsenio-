@@ -122,7 +122,7 @@ namespace Events.Controllers
             var query =
                 from data in db.EventsWithTickets
                 where data.HasTickets == true
-                select data;
+                select new { data.City, data.Addres, data.EventDate, data.Transport, data.MaxTicket, data.Description };
 
             return query;
         }
@@ -133,7 +133,7 @@ namespace Events.Controllers
             var query =
                 from data in db.EventsWithTickets
                 where data.City.CityName.Equals(cityName)
-                select data;
+                select new { data.City, data.Addres, data.EventDate, data.Transport, data.MaxTicket, data.Description };
 
             return query;
         }
@@ -144,7 +144,7 @@ namespace Events.Controllers
             var query =
                 from data in db.EventsWithTickets
                 where data.EventDate == date
-                select data;
+                select new { data.City, data.Addres, data.EventDate, data.Transport, data.MaxTicket, data.Description };
 
             return query;
         }
@@ -155,7 +155,7 @@ namespace Events.Controllers
             var query =
                 from data in db.EventsWithTickets
                 where (data.EventDate >= date) && (data.EventDate <= date2)
-                select data;
+                select new { data.City, data.Addres, data.EventDate, data.Transport, data.MaxTicket, data.Description };
 
             return query;
         }
@@ -166,9 +166,10 @@ namespace Events.Controllers
             var query =
                 from data in db.Tickets
                 where (data.Price <= price)
-                select new { data.EventWithTicket };
+                select new { data.EventWithTicket.City, data.EventWithTicket.Addres, data.EventWithTicket.EventDate, data.EventWithTicket.Transport, data.EventWithTicket.MaxTicket, data.EventWithTicket.Description };
 
             return query;
-        }
+
+       }
     }
 }
